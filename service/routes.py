@@ -38,6 +38,7 @@ def index():
 ######################################################################
 # CREATE A NEW ACCOUNT
 ######################################################################
+
 @app.route("/accounts", methods=["POST"])
 def create_accounts():
     """
@@ -61,16 +62,16 @@ def create_accounts():
 # LIST ALL ACCOUNTS
 ######################################################################
 
+
 @app.route("/accounts", methods=["GET"])
 def list_accounts():
     """Returns all of the Accounts"""
     app.logger.info("Request for account list")
-    
     accounts = Account.all()
     
     # Create a list of dictionaries from the Account models
     results = [account.serialize() for account in accounts]
-    
+
     app.logger.info("Returning %d accounts", len(results))
     return jsonify(results), status.HTTP_200_OK
 
@@ -131,7 +132,7 @@ def delete_accounts(account_id):
     if account:
         account.delete()
         app.logger.info("Account with ID [%s] delete complete.", account_id)
-    
+
     return "", status.HTTP_204_NO_CONTENT
 
 
