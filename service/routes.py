@@ -68,7 +68,7 @@ def list_accounts():
     """Returns all of the Accounts"""
     app.logger.info("Request for account list")
     accounts = Account.all()
-    
+
     # Create a list of dictionaries from the Account models
     results = [account.serialize() for account in accounts]
 
